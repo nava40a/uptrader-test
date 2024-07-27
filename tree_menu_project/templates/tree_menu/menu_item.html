@@ -1,0 +1,11 @@
+{% load static %}
+<li>
+    <a href="{{ item.get_absolute_url }}" class="{% if item == active_item %}active{% endif %}">{{ item.name }}</a>
+    {% if item in expanded_items %}
+        <ul>
+            {% for child in item.children.all %}
+                {% include "tree_menu/menu_item.html" with item=child expanded_items=expanded_items active_item=active_item %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+</li>

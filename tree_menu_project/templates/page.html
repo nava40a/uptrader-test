@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{{ menu_item.name }}</h1>
+
+    {% if menu_item.children.exists %}
+        <ul>
+            {% for child in menu_item.children.all %}
+                <li>
+                    <a href="{{ child.get_absolute_url }}">{{ child.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Пусто...</p>
+    {% endif %}
+{% endblock %}
